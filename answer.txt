@@ -1,9 +1,0 @@
-Section 10:
-
-	- Đáp án của em là "không thể" tạo một phương thức khởi tạo theo 'title' sau đó tạo một phương thức khởi tạo khác theo 'category' nếu chỉ có một tham đầu vào. Vì danh sách tham số giữa hai phương thức trên là giống nhau cùng là một tham số kiểu xâu (về số lượng hoặc kiểu dữ liệu của tham số). Nếu cùng là khởi tạo chỉ một tham số đầu vào kiểu String thì dĩ nhiên là không được vì cả hai phương thức khởi tạo có cùng một tham số truyền vào có cùng một kiểu, nên cho dù là bên trong phương thức là "this.title" hoặc "this.category" thì vẫn không được. Nhưng nếu thay đổi số tham số truyền vào của một phương thức khởi tạo, có thể cho một biến trung gian. Thì khi tạo một đối tượng theo 'category' cần tạo thêm 1 biến bổ sung để tạo một đối tượng mới theo category. 
-	- Java không cho phép làm điều nếu tham số đầu vào chỉ gồm có một biến kiểu String (ví title và category đều kiểu String). Nếu muốn tạo một đối tượng
-Section 15:
-
-	- Java là ngôn ngữ lập trình Pass by Value (truyền tham trị), không phải Pass by Reference (truyền tham chiếu) vì Java cho chuyền bản sao của tham chiếu mà không phải chính tham chiếu gốc hay không thể thay đổi tham chiếu gốc chiếu đến một đối tượng mới
-	- After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two objects still remain? - Tại vì swap(jungleDVD, cinderellaDVD) có nghĩa là truyền hai giá trị tham số jungleDVD và cinderellaDVD vào trong hàm swap thôi, chứ không phải tham chiếu chiếu đến tham số jungleDVD và cinderellaDVD nên sau khi swap thì vẫn giữ nguyên.
-	- After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is the title of the JungleDVD changed? - Tại vì lúc này ta đã can thiệp đến cinderellaDVD.getTitle(), tức là thuộc tính của cinderellaDVD hay thay đổi trực tiếp giá trị của thuộc tính 'title' của cinderellaDVD.
