@@ -1,0 +1,53 @@
+1. What class should implement the Comparable interface?
+Trả lời:
+Class Media nên implement Comparable<Media>
+Vì Media là lớp cha của tất cả các loại phương tiện (Book, DigitalVideoDisc, CompactDisc), nên việc implement Comparable<Media> trong Media cho phép sắp xếp các đối tượng Media trong một danh sách hỗn hợp.
+
+public abstract class Media implements Comparable<Media> {
+    @Override
+    public int compareTo(Media otherMedia) {
+        // Compare by title
+        return this.title.compareTo(otherMedia.getTitle());
+    }
+}
+
+2. In those classes, how should you implement the compareTo()method to reflect the ordering that
+we want?
+Trả lời:
+public abstract class Media implements Comparable<Media> {
+@Override
+public int compareTo(Media other) {
+    int titleCompare = this.title.compareToIgnoreCase(other.title);
+    if (titleCompare != 0) return titleCompare;
+    return Float.compare(this.cost, other.cost);
+}
+
+
+3. Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this
+Comparable interface approach?
+Trả lời:
+Không, vì Comparable chỉ cho phép một quy tắc sắp xếp duy nhất mặc định (qua compareTo()).
+
+Tuy nhiên, nếu cần nhiều hơn một cách sắp xếp, hãy dùng Comparator<Media>.
+Collections.sort(mediaList, Media.COMPARE_BY_COST_TITLE);
+
+4. Suppose the DVDs have a different ordering rule from the other media types, that is by title, then
+decreasing length, then cost. How would you modify your code to allow this?
+Trả lời:
+override lại compareTo() trong lớp DigitalVideoDisc như sau:
+@Override
+public int compareTo(Media other) {
+    if (!(other instanceof DigitalVideoDisc)) {
+        return super.compareTo(other); // fallback về Media logic nếu khác loại
+    }
+    
+    DigitalVideoDisc otherDvd = (DigitalVideoDisc) other;
+
+    int titleCompare = this.getTitle().compareToIgnoreCase(otherDvd.getTitle());
+    if (titleCompare != 0) return titleCompare;
+
+    int lengthCompare = Integer.compare(otherDvd.getLength(), this.getLength()); // giảm dần
+    if (lengthCompare != 0) return lengthCompare;
+
+    return Float.compare(this.getCost(), otherDvd.getCost());
+}
