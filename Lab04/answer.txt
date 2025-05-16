@@ -1,0 +1,25 @@
+1. So sánh top-level containers giữa Swing và AWT
+
+Trong AWT, các thành phần giao diện cấp cao (top-level containers) bao gồm Frame, Dialog, và Applet. Đây là các thành phần heavyweight, nghĩa là chúng phụ thuộc vào thành phần giao diện gốc (native peers) của hệ điều hành, nên có giao diện và hành vi khác nhau tùy hệ điều hành.
+
+Swing thay thế chúng bằng JFrame, JDialog, và JApplet. Mặc dù cũng là heavyweight do kế thừa từ AWT, nhưng các lớp này hoạt động linh hoạt hơn, hỗ trợ thêm các tính năng nâng cao. Điểm khác biệt quan trọng là thành phần trong Swing không được thêm trực tiếp vào container, mà phải thêm vào content pane (ví dụ: getContentPane().add(...)).
+
+2. So sánh tên lớp của các thành phần giao diện
+
+AWT sử dụng các lớp có tên ngắn và đơn giản như Button, Label, TextField, TextArea, Checkbox, List, Menu, v.v. Những thành phần này đủ dùng cho giao diện cơ bản, nhưng thiếu tính linh hoạt và hiện đại.
+
+Swing mở rộng AWT bằng cách thêm tiền tố J vào tên lớp như JButton, JLabel, JTextField, JTextArea, JCheckBox, JList, JMenu, v.v. Ngoài ra, Swing còn có nhiều thành phần nâng cao mà AWT không có như JTable (bảng), JTree (cây), JTabbedPane (tab), JProgressBar (thanh tiến trình), JToolBar, JScrollPane, giúp xây dựng giao diện phong phú và hiện đại hơn.
+
+3. So sánh xử lý sự kiện (event-handling)
+
+Cả AWT và Swing đều sử dụng mô hình ủy quyền sự kiện (Event Delegation Model). Trong mô hình này, khi người dùng tương tác với giao diện (ví dụ: nhấn nút), một event object sẽ được tạo ra và gửi đến listener (đối tượng lắng nghe sự kiện).
+
+Cả hai đều sử dụng các interface như ActionListener, MouseListener, KeyListener, v.v., thuộc gói java.awt.event.
+
+Swing kế thừa toàn bộ mô hình xử lý sự kiện của AWT và mở rộng thêm nhiều listener mới dành cho các thành phần phức tạp, ví dụ như ChangeListener cho JSlider, TreeSelectionListener cho JTree, hay ListSelectionListener cho JList. Điều này cho phép Swing xử lý sự kiện linh hoạt hơn và phù hợp với giao diện hiện đại.
+
+4. So sánh giao diện của ứng dụng
+
+AWT sử dụng các thành phần giao diện gốc (native), nên giao diện phụ thuộc vào hệ điều hành. Ví dụ, một nút Button trong AWT sẽ trông khác nhau trên Windows, macOS hay Linux. Điều này khiến giao diện không đồng nhất và khó kiểm soát.
+
+Swing sử dụng thành phần được vẽ hoàn toàn bằng Java (lightweight), nên giao diện có thể đồng nhất trên mọi hệ điều hành. Swing hỗ trợ Pluggable Look and Feel, nghĩa là có thể thay đổi toàn bộ giao diện ứng dụng một cách dễ dàng, ví dụ: dùng giao diện Metal, Nimbus, hoặc giả lập giao diện Windows, Motif... Ngoài ra, Swing còn hỗ trợ các hiệu ứng đồ họa, biểu tượng, màu sắc, font chữ linh hoạt hơn so với AWT.
