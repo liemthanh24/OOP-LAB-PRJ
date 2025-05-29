@@ -1,0 +1,8 @@
+11. The Aims class must be updated to handle any exceptions generated when the play() methods
+are called. What happens when you don’t update for them to catch?
+
+- Nếu lớp Aims không xử lý (bắt) các ngoại lệ được ném ra bởi các phương thức play():
+
++ Ngoại lệ không được xử lý sẽ lan truyền lên trên, khiến chương trình bị dừng đột ngột (crash) với thông báo lỗi "unhandled exception".
++ Người dùng sẽ thấy một "stack trace" (dấu vết ngăn xếp) kỹ thuật thô thay vì một thông báo lỗi thân thiện và dễ hiểu.
++ Trong trường hợp ứng dụng có giao diện đồ họa (GUI), điều này có thể gây treo (freeze) giao diện người dùng nếu ngoại lệ xảy ra trên luồng giao diện mà không được bắt.
